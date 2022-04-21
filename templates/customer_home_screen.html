@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+
+    <meta charset=utf-8 />
+
+    <link rel="stylesheet" href={{ url_for( 'static' , filename='style.css' ) }} />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal('show');
+        });
+    </script>
+
+
+</head>
+
+<body>
+    {% if modal is defined %}
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        style="z-index: 10000;" aria-hidden="true">
+        <form method="POST" action="/make_purchase">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="background-color: white;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle"
+                            style="color: black; font-family: 'Pacifico', cursive; font-size: 26pt;">
+
+
+                            <center>
+                                <div>{{modal}}</div>
+                            </center>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            style="color: black;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{image_url}}" />
+                        <div class="card-text"> Price: ${{price}}</div>
+                    </div>
+
+                    <button class="button is-block is-info is-large"
+                        style="background-color: rgb(255, 215, 38); font-family: 'Pacifico', cursive;">Purchase</button>
+                </div>
+            </div>
+            <input type="hidden" name="user_name" value="{{user_name}}">
+            <input type="hidden" name="price" value="{{price}}">
+            <input type="hidden" name="img_id" value="{{img_id}}">
+            <input type="hidden" name="creator_user_name" value="{{creator_user_name}}">
+
+
+
+
+        </form>
+    </div>
+    {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:  rgb(255, 214, 32);">
+        <a class="navbar-brand" href="#">
+
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/gallery?user_name={{user_name}}">Gallery<span
+                        class="sr-only"></span></a>
+                <a class="nav-item nav-link" href="/purchases?user_name={{user_name}}">Purchases</a>
+                <a class="nav-item nav-link" href="/customer_account?user_name={{user_name}}">Account</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <a class="nav-item nav-link mr-sm-2" href="/logout">Logout</a>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        html,
+        body {
+            background-color: rgb(255, 247, 177);
+
+        }
+
+        ::placeholder {
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+
+
+
+    <br>
+    <br>
+    <center>
+        <h1 style="font-size: 50pt;font-family: 'Pacifico', cursive; color: rgb(255, 214, 32);">Gallery
+        </h1>
+    </center>
+    <br>
+    <br>
+
+
+    <div class="row g-3">
+        {% for i in range(images_len) %}
+
+
+        <div class="col-md-4" style="padding-left: 80px; padding-bottom: 40px;">
+            <div class="card-sl">
+                <div class="card-image">
+                    <img src="{{images[i]['img_url']}}" />
+                </div>
+
+                <a class="card-action" href="#"><i class="fa fa-heart" style="width: 18px;"></i></a>
+                <div class="card-heading">
+                    {{images[i]["img_name"]}}
+                </div>
+                <div class="card-text">
+                    <span style="color: rgb(94, 94, 94);">Creator: {{images[i]['creator_user_name']}}</span>
+                </div>
+                <div class="card-text">
+                    ${{images[i]['price']}}
+                </div>
+                <a href="/purchase_image?img_id={{images[i]['img_id']}}&img_name={{images[i]['img_name']}}&img_url={{images[i]['img_url']}}&creator_user_name={{images[i]['creator_user_name']}}&price={{images[i]['price']}}&user_name={{user_name}}"
+                    class="card-button"> Purchase</a>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

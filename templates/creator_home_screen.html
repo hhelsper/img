@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+
+    <meta charset=utf-8 />
+
+    <link rel="stylesheet" href={{ url_for( 'static' , filename='style.css' ) }} />
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:  rgb(255, 159, 68);">
+        <a class="navbar-brand" href="#">
+
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/your_photos?user_name={{user_name}}">Your Photos<span
+                        class="sr-only"></span></a>
+                <a class="nav-item nav-link active" href="/add_photo?user_name={{user_name}}">Add a Photo</a>
+                <a class="nav-item nav-link" href="/creator_account?user_name={{user_name}}">Account</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <a class="nav-item nav-link mr-sm-2" href="/logout">Logout</a>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        html,
+        body {
+            background-color: rgb(255, 205, 140);
+
+        }
+
+        ::placeholder {
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+
+    <br>
+    <br>
+    {% if img_url is defined %}
+    <center>
+        <h1 style="font-size: 50pt;font-family: 'Pacifico', cursive; color: rgb(255, 123, 0)">Name it and Set a Price
+        </h1>
+    </center>
+    <center><img class="img-right" src={{img_url}}></center>
+    <br>
+    <center>
+        <div class="col-sm-5">
+            <form method="POST" action="/set_name_and_price">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-quote-left"></i>
+                        </div>
+                    </div>
+                    <input class="form-control form-control-lg" id="imagename" type="text" name="name"
+                        placeholder="Name" style=" box-shadow: 5px 5px 8px 2px rgba(243, 183, 94, 0.8);">
+                </div>
+
+                <br>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-dollar"></i>
+                        </div>
+                    </div>
+                    <input class="form-control form-control-lg" id="imagename" type="text" name="price"
+                        placeholder="Price" style=" box-shadow: 5px 5px 8px 2px rgba(243, 183, 94, 0.8);">
+                </div>
+                <input type="hidden" name="img_url" value="{{img_url}}">
+                <input type="hidden" name="user_name" value="{{user_name}}">
+                <br>
+                <center><button class="button is-block is-info is-large" id="btn" value="GO"
+                        style="background-color: rgb(255, 159, 68); width: 300px; box-shadow: 5px 5px 8px 2px rgba(243, 183, 94, 0.8);">Save</button>
+                </center>
+            </form>
+        </div>
+    </center>
+
+
+
+
+
+    {% else %}
+    <center>
+        <h1 style="font-size: 50pt;font-family: 'Pacifico', cursive; color: rgb(255, 123, 0)">Add a Creation</h1>
+    </center>
+    <br>
+    <div>
+        <center>
+            <div class="col-sm-8">
+                <form method="POST" action="/save_image">
+                    <input class="form-control form-control-lg" id="imagename" value="" type="text" name="url"
+                        placeholder="Paste Your Image Url">
+                    <input type="hidden" name="user_name" value="{{user_name}}">
+
+                    <br>
+                    <br>
+                    <center><button class="button is-block is-info is-large" id="btn" value="GO"
+                            style="background-color: rgb(255, 159, 68);">Save</button>
+                    </center>
+
+                </form>
+            </div>
+
+
+        </center>
+
+
+        {% endif%}
+
+    </div>
+
+
+</body>
+
+</html>

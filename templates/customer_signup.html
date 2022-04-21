@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+</head>
+
+<body>
+
+    <style>
+        html,
+        body {
+            background-color: rgb(255, 247, 177);
+
+        }
+    </style>
+
+    <br>
+    <br>
+    <center>
+        <h1 style="font-size: 50pt;font-family: 'Pacifico', cursive; color: rgb(255, 214, 32)">Sign Up</h1>
+    </center>
+    <br>
+    <div class="column is-4 is-offset-4">
+
+        <div class="box" style="border-radius: 5%; background-color: rgb(255, 252, 227);">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification " style="background-color: rgb(255, 214, 32); color: white;">
+                {{ messages[0] }}.
+                <!-- Go to <a href="/login">login page -->
+
+                </a>
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/customer_signup">
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="user_name" placeholder="Username" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="email" placeholder="Email" autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="password" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="password" name="confirm_password"
+                            placeholder="Confirm Password">
+                    </div>
+                </div>
+
+                <button class="button is-block is-info is-large is-fullwidth"
+                    style="background-color: rgb(255, 215, 38);">Sign Up</button>
+
+            </form>
+            <form action="/customer_login">
+                <h5
+                    style="font-family: 'Pacifico', cursive; color:rgb(255, 214, 32); font-size: 13pt; padding-top: 5px; padding-bottom: 5px;">
+                    Already have an
+                    account?</h5>
+                <button class="button is-block is-info is-large is-fullwidth"
+                    style="background-color: rgb(255, 215, 38);">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

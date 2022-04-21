@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+
+    <meta charset=utf-8 />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href={{ url_for( 'static' , filename='style.css' ) }} />
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:  rgb(255, 159, 68);">
+        <a class="navbar-brand" href="#">
+
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/your_photos?user_name={{user_name}}">Your Photos<span
+                        class="sr-only"></span></a>
+                <a class="nav-item nav-link" href="/add_photo?user_name={{user_name}}">Add a Photo</a>
+                <a class="nav-item nav-link " href="/creator_account?user_name={{user_name}}">Account</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <a class="nav-item nav-link mr-sm-2" href="/logout">Logout</a>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        html,
+        body {
+            background-color: rgb(255, 205, 140);
+
+        }
+
+        ::placeholder {
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+
+    <br>
+    <br>
+
+    <center>
+        <h1 style="font-size: 50pt;font-family: 'Pacifico', cursive; color: rgb(255, 123, 0)">Your Photos
+        </h1>
+    </center>
+
+    <br>
+    <div class="row g-3">
+        {% for i in range(images_len) %}
+
+
+        <div class="col-md-4" style="padding-left: 80px; padding-bottom: 40px;">
+            <div class="card-sl" style="border-radius: 8%;">
+                <div class="card-image">
+                    <img src="{{images[i].img_url}}" />
+                </div>
+
+
+                <div class="card-heading">
+                    {{images[i].img_name}}
+                </div>
+                <div class="card-text">
+                    Created: {{images[i].time_posted.strftime("%m/%d/%Y")}}
+                </div>
+                <div class="card-text" style="color: black;">
+                    {% if images[i].purchased == true %}
+                    SOLD!
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+
+        {% endfor %}
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+
+    <meta charset=utf-8 />
+
+    <link rel="stylesheet" href={{ url_for( 'static' , filename='style.css' ) }} />
+
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:  rgb(255, 214, 32);">
+        <a class="navbar-brand" href="#">
+
+
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/gallery?user_name={{user_name}}">Gallery<span
+                        class="sr-only"></span></a>
+                <a class="nav-item nav-link" href="/purchases?user_name={{user_name}}">Purchases</a>
+                <a class="nav-item nav-link active" href="/customer_account?user_name={{user_name}}">Account</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <a class="nav-item nav-link mr-sm-2" href="/logout">Logout</a>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        html,
+        body {
+            background-color: rgb(255, 247, 177);
+
+        }
+
+        ::placeholder {
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+
+    <br>
+    <br>
+    <center>
+        <h1 style="font-size: 50pt;font-family: 'Pacifico', cursive; color: rgb(255, 214, 32);">Account
+        </h1>
+    </center>
+    <br>
+
+
+
+    <div class="profile-card-4 text-center"><img src="/static/s_cart.jpeg" class="img img-responsive">
+        <div class="profile-content">
+            <div class="profile-name">{{user_name}}
+                <p>{{email}}</p>
+            </div>
+            <div class="profile-description" style="font-size: 12pt;">A wonderful new member to the customers at IMG
+            </div>
+            <div class="row">
+                <div class="col-sm-3" style="padding-left: 60px;">
+                    <div class="profile-overview">
+                        <p style="font-size: 10pt;">BALANCE</p>
+                        <h4 style="padding-left: 7px;">${{balance}}</h4>
+                    </div>
+                </div>
+
+                <div class="col-sm-3" style="padding-left: 90px;">
+                    <div class="profile-overview">
+                        <p style="font-size: 10pt;">PURCHASES</p>
+                        <h4 style="padding-left: 12px;">{{purchases_len}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
