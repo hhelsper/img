@@ -14,4 +14,4 @@ IMG is a website for buying and selling NFT's. Users can signup as either creato
 
 ## Tech Used
 
-This website was created using flask python backend, html and css for front end and a postgresql database. My database has 8 tables and 5 foreign keys.
+This website was created using flask python backend, html, css and bootstrap for front end and a postgresql database. My database has 8 tables and 5 foreign keys.
